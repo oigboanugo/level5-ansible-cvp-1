@@ -17,40 +17,42 @@
         path: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_final.cfg"
         state: absent
         
-  - name: Create common configs for spines and leafs
-    hosts: leafs_DC1, leafs_DC2, spines_DC1, spines_DC2
-    tasks: 
-    - name: Register variables (underlay)
-      include_vars:
-        file: "{{lookup('env','PWD')}}/vars/underlay.yml"
-        name: underlay
-    - name: Register variables (mgmt)
-      include_vars:
-        file: "{{lookup('env','PWD')}}/vars/mgmt.yml"
-        name: mgmt
+  # - name: Create common configs for spines and leafs
+  #   hosts: leafs_DC1, leafs_DC2, spines_DC1, spines_DC2
+  #   tasks: 
+  #   - name: Register variables (underlay)
+  #     include_vars:
+  #       file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+  #       name: underlay
+  #   - name: Register variables (mgmt)
+  #     include_vars:
+  #       file: "{{lookup('env','PWD')}}/vars/mgmt.yml"
+  #       name: mgmt
 
-    - name: Create Interface config
-      template: 
-        src: "{{lookup('env','PWD')}}/templates/interfaces.j2"
-        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_interface.cfg"
+  #   - name: Create Interface config
+  #     template: 
+  #       src: "{{lookup('env','PWD')}}/templates/interfaces.j2"
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_interface.cfg"
   
-    - name: Create Management config
-      template: 
-        src: "{{lookup('env','PWD')}}/templates/base.j2"
-        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_base.cfg"
+  #   - name: Create Management config
+  #     template: 
+  #       src: "{{lookup('env','PWD')}}/templates/base.j2"
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_base.cfg"
     
  
-  - name: Create spine configurations for underlay
-    hosts: spines_DC1, spines_DC2
-    tasks: 
-    - name: Register variables (underlay)
-      include_vars:
-        file: "{{lookup('env','PWD')}}/vars/underlay.yml"
-        name: underlay
-    - name: Create Spine EVPN Underlay config
-      template: 
-        src: "{{lookup('env','PWD')}}/templates/spine_EVPN.j2"
-        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"
+  # - name: Create spine configurations for underlay
+  #   hosts: spines_DC1, spines_DC2
+  #   tasks: 
+  #   - name: Register variables (underlay)
+  #     include_vars:
+  #       file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+  #       name: underlay
+  #   - name: Create Spine EVPN Underlay config
+  #     template: 
+  #       src: "{{lookup('env','PWD')}}/templates/spine_EVPN.j2"
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"
+
+
 
   - name: Create leaf configurations for underlay and VXLAN tenants
     hosts: leafs_DC1, leafs_DC2
@@ -59,21 +61,38 @@
       include_vars:
         file: "{{lookup('env','PWD')}}/vars/underlay.yml"
         name: underlay
-    - name: Register VXLAN variables
-      include_vars:
-        file: "{{lookup('env','PWD')}}/vars/VXLAN.yml"
-        name: VXLAN
+    # - name: Register VXLAN variables
+    #   include_vars:
+    #     file: "{{lookup('env','PWD')}}/vars/VXLAN.yml"
+    #     name: VXLAN
     - name: Create Leaf EVPN Underlay config
       template: 
         src: "{{lookup('env','PWD')}}/templates/leaf_EVPN.j2"
         dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"   
-    - name: Create VXLAN Configuration
-      template: 
-        src: "{{lookup('env','PWD')}}/templates/VXLAN.j2"
-        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_VXLAN.cfg"
+
+    # - name: Create VXLAN Configuration
+    #   template: 
+    #     src: "{{lookup('env','PWD')}}/templates/VXLAN.j2"
+    #     dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_VXLAN.cfg"
 
 
 
+
+
+# hosts
+
+  # - name: Create leaf configurations for underlay and VXLAN tenants
+  #   hosts: leafs_DC1, leafs_DC2
+  #   tasks: 
+  #   - name: Register variables (hosts_access)
+  #     include_vars:
+  #       file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+  #       name: underlay
+
+  #   - name: Create Leaf Host config for all leafs
+  #     template: 
+  #       src: "{{lookup('env','PWD')}}/templates/hosts_access.j2"
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"   
 
 
     

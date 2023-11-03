@@ -1,0 +1,125 @@
+
+
+global:
+  MTU: 9214
+
+DC1:
+leaf1-DC1:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+leaf2-DC1:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+leaf3-DC1:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+leaf4-DC1:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+leaf1-DC2:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+leaf2-DC2:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+leaf3-DC2:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 10
+          - 20
+          - 30
+          - 40
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+leaf4-DC2:
+    HOST_interfaces:
+      Ethernet6: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+      Ethernet7: 
+        VLAN:
+          - 101
+          - 201
+          - 301
+          - 401
+
+

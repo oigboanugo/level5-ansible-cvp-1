@@ -16,6 +16,8 @@
         src: "{{lookup('env','PWD')}}/templates/CVP_model.j2"
         dest: "{{lookup('env','PWD')}}/vars/CVP_model.yml"
 
+
+#THIS WAS MUTED BY SDN 
     # - name: Upload Configlets for OSPF Underlay
     #   arista.cvp.cv_configlet_v3:
     #     configlets: "{{ CVP_CONFIGLETS_EVPN }}"
