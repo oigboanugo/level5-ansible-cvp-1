@@ -1,12 +1,14 @@
-## configure attachment circuits to hosts
+
 
 !
-{% for interface in underlay['DC1'][inventory_hostname]['HOST_interfaces'] %}
+{% for interface in underlay[inventory_hostname]['HOST_interfaces'] %}
 interface {{ interface }}
     switchport mode trunk
     channel-group 1 mode active
-{% for vlan in underlay['DC1'][inventory_hostname]['HOST_interfaces'][interface]['VLAN'] %}
+    !
+{% for vlan in underlay[inventory_hostname]['HOST_interfaces'][interface]['VLAN'] %}
     switchport trunk allowed vlan add {{vlan}}
+    !
    {% endfor %}
 {% endfor %}
 

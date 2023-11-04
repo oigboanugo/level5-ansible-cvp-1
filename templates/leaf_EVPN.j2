@@ -2,19 +2,21 @@ service routing protocols model multi-agent
 
 ip virtual-router mac-address 001c.7300.0099
 
- {% set hostname = underlay %}
-{% if 'HWD' in underlay[hostname] %}
+
+{% if underlay[inventory_hostname]['DC'] == "DC1" %}
    ip prefix-list LOOPBACK
     seq 10 permit 192.168.101.0/24 eq 32
     seq 20 permit 192.168.102.0/24 eq 32
     seq 30 permit 192.168.103.0/24 eq 32
     seq 40 permit 192.168.255.0/24 eq 32
+    seq 50 permit 192.168.253.0/24 eq 32
    {% else %}
    ip prefix-list LOOPBACK
     seq 10 permit 192.168.201.0/24 eq 32
     seq 20 permit 192.168.202.0/24 eq 32
     seq 30 permit 192.168.203.0/24 eq 32
     seq 40 permit 192.168.255.0/24 eq 32
+    seq 50 permit 192.168.253.0/24 eq 32
 {% endif %}
 
 route-map LOOPBACK permit 10
@@ -49,9 +51,8 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
 {% endif %}
 
   neighbor EVPN peer group
- 
      neighbor EVPN remote-as {{ underlay[inventory_hostname]['BGP']['spine-ASN']}} 
- 
+
   
     neighbor EVPN update-source Loopback0
     neighbor EVPN ebgp-multihop 3
@@ -59,7 +60,7 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
     neighbor EVPN maximum-routes 0
   
 
-{% if underlay['global'] == "DC1" %}
+{% if underlay[inventory_hostname]['DC'] == "DC1" %}
    {% for peer in underlay['global']['DC1']['spine_peers'] %}
       neighbor {{ peer }} peer group EVPN
    {% endfor %}  
@@ -70,6 +71,7 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
       neighbor {{ peer }} peer group EVPN
    {% endfor %}  
 {% endif %}
+
  
    address-family evpn
      neighbor EVPN activate
@@ -78,3 +80,4 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
      neighbor Underlay activate
      neighbor LEAF_Peer activate
      redistribute connected route-map LOOPBACK
+

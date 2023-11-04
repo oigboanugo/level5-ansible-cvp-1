@@ -8,10 +8,11 @@
 # 192.168.203/24 IS UNDERLAY RANGE OF DC2 LEAF
 
 global:
+  DCI: "192.168.253.0/24"
   DC1:
     spine_ASN: 65100
     p2p: "192.168.103.0/24"
-    lo0: "192.168.101.0/24"
+    lo0: "192.168.101.0/24"   
     spine_peers:
       - 192.168.101.101
       - 192.168.101.102
@@ -26,6 +27,7 @@ global:
       - 192.168.201.103
   MTU: 9214
 spine1-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.101
@@ -51,6 +53,7 @@ spine1-DC1:
   BGP:
     ASN: 65100
 spine2-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.102
@@ -76,6 +79,7 @@ spine2-DC1:
   BGP:
     ASN: 65100
 spine3-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.103
@@ -101,6 +105,7 @@ spine3-DC1:
   BGP:
     ASN: 65100
 leaf1-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.11
@@ -126,6 +131,7 @@ leaf1-DC1:
     spine-ASN: 65100
   MLAG: Odd
 leaf2-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.12
@@ -151,6 +157,7 @@ leaf2-DC1:
     spine-ASN: 65100
   MLAG: Even
 leaf3-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.13
@@ -176,6 +183,7 @@ leaf3-DC1:
     spine-ASN: 65100
   MLAG: Even
 leaf4-DC1:
+  DC: DC1
   interfaces:
     loopback0: 
       ipv4: 192.168.101.14
@@ -201,6 +209,8 @@ leaf4-DC1:
     spine-ASN: 65100
   MLAG: Odd
 borderleaf1-DC1:
+  DC: DC1
+  DCI: Yes
   interfaces:
     loopback0: 
       ipv4: 192.168.101.21
@@ -229,12 +239,15 @@ borderleaf1-DC1:
     spine-ASN: 65100
     DCI-peers:
       - 192.168.254.1
+    DCI-ASN: 65000
   MLAG: Odd
 
 borderleaf2-DC1:
+  DC: DC1
+  DCI: Yes
   interfaces:
     loopback0: 
-      ipv4: 192.168.101.21
+      ipv4: 192.168.101.22
       mask: 32
     loopback1: 
       ipv4: 192.168.102.21
@@ -260,9 +273,11 @@ borderleaf2-DC1:
     spine-ASN: 65100
     DCI-peers:
       - 192.168.254.3
+    DCI-ASN: 65000
   MLAG: Even
 
 spine1-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.101
@@ -288,6 +303,7 @@ spine1-DC2:
   BGP:
     ASN: 65200
 spine2-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.102
@@ -313,6 +329,7 @@ spine2-DC2:
   BGP:
     ASN: 65200
 spine3-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.103
@@ -338,6 +355,7 @@ spine3-DC2:
   BGP:
     ASN: 65200
 leaf1-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.11
@@ -363,6 +381,7 @@ leaf1-DC2:
     spine-ASN: 65200
   MLAG: Odd
 leaf2-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.12
@@ -388,6 +407,7 @@ leaf2-DC2:
     spine-ASN: 65200
   MLAG: Even
 leaf3-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.13
@@ -413,6 +433,7 @@ leaf3-DC2:
     spine-ASN: 65200
   MLAG: Odd
 leaf4-DC2:
+  DC: DC2
   interfaces:
     loopback0: 
       ipv4: 192.168.201.14
@@ -438,6 +459,8 @@ leaf4-DC2:
     spine-ASN: 65200
   MLAG: Even
 borderleaf1-DC2:
+  DC: DC2
+  DCI: Yes
   interfaces:
     loopback0: 
       ipv4: 192.168.201.21
@@ -466,8 +489,11 @@ borderleaf1-DC2:
     spine-ASN: 65200
     DCI-peers:
       - 192.168.254.5
+    DCI-ASN: 65000
   MLAG: Odd
 borderleaf2-DC2:
+  DC: DC2
+  DCI: Yes
   interfaces:
     loopback0: 
       ipv4: 192.168.201.22
@@ -496,4 +522,5 @@ borderleaf2-DC2:
     spine-ASN: 65200
     DCI-peers:
     - 192.168.254.7
+    DCI-ASN: 65000
   MLAG: Even

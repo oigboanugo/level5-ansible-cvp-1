@@ -9,11 +9,12 @@ ip virtual-router mac-address 001c.7300.0099
     seq 30 permit 192.168.203.0/24 eq 32
     seq 40 permit 192.168.255.0/24 eq 32
 
+
 route-map LOOPBACK permit 10
    match ip address prefix-list LOOPBACK
 
-router bgp 65201
-   router-id 192.168.201.12
+router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
+   router-id {{ underlay[inventory_hostname]['interfaces']['loopback0']['ipv4']}}
 
    no bgp default ipv4-unicast
    maximum-paths 3
@@ -21,25 +22,29 @@ router bgp 65201
 
 
    neighbor Underlay peer group  
-   neighbor Underlay remote-as 65200
+   neighbor Underlay remote-as {{ underlay[inventory_hostname]['BGP']['spine-ASN'] }}
    neighbor Underlay send-community
    neighbor Underlay maximum-routes 12000
 
    neighbor LEAF_Peer peer group
-   neighbor LEAF_Peer remote-as 65201
+   neighbor LEAF_Peer remote-as {{ underlay[inventory_hostname]['BGP']['ASN'] }}
    neighbor LEAF_Peer next-hop-self
    neighbor LEAF_Peer maximum-routes 12000
 
 
-   neighbor 192.168.203.7 peer group Underlay
-   neighbor 192.168.203.9 peer group Underlay
-   neighbor 192.168.203.11 peer group Underlay
-   
+{% for peer in underlay[inventory_hostname]['BGP']['spine-peers'] %}
+   neighbor {{ peer }} peer group Underlay
+{% endfor %}   
+{% if underlay[inventory_hostname]['MLAG'] == "Odd" %}
+   neighbor 192.168.255.2 peer group LEAF_Peer
+   {% else %}
    neighbor 192.168.255.1 peer group LEAF_Peer
+{% endif %}
 
   neighbor EVPN peer group
-     neighbor EVPN remote-as 65200 
-
+ 
+     neighbor EVPN remote-as {{ underlay[inventory_hostname]['BGP']['spine-ASN']}} 
+ 
   
     neighbor EVPN update-source Loopback0
     neighbor EVPN ebgp-multihop 3
@@ -48,10 +53,11 @@ router bgp 65201
   
 
 
-         neighbor 192.168.201.101 peer group EVPN
-         neighbor 192.168.201.102 peer group EVPN
-         neighbor 192.168.201.103 peer group EVPN
-     
+   {% for peer in underlay['global']['DC2']['spine_peers'] %}
+      neighbor {{ peer }} peer group EVPN
+   {% endfor %}  
+
+
  
    address-family evpn
      neighbor EVPN activate

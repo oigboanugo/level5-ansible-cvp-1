@@ -40,17 +40,19 @@
   #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_base.cfg"
     
  
-  # - name: Create spine configurations for underlay
-  #   hosts: spines_DC1, spines_DC2
-  #   tasks: 
-  #   - name: Register variables (underlay)
-  #     include_vars:
-  #       file: "{{lookup('env','PWD')}}/vars/underlay.yml"
-  #       name: underlay
-  #   - name: Create Spine EVPN Underlay config
-  #     template: 
-  #       src: "{{lookup('env','PWD')}}/templates/spine_EVPN.j2"
-  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"
+  - name: Create spine configurations for underlay
+    hosts: spines_DC1, spines_DC2
+    tasks: 
+    - name: Register variables (underlay)
+      include_vars:
+        file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+        name: underlay
+
+
+    - name: Create Spine EVPN Underlay config
+      template: 
+        src: "{{lookup('env','PWD')}}/templates/spine_EVPN.j2"
+        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"
 
 
 
@@ -61,19 +63,21 @@
       include_vars:
         file: "{{lookup('env','PWD')}}/vars/underlay.yml"
         name: underlay
-    # - name: Register VXLAN variables
-    #   include_vars:
-    #     file: "{{lookup('env','PWD')}}/vars/VXLAN.yml"
-    #     name: VXLAN
-    - name: Create Leaf EVPN Underlay config
-      template: 
-        src: "{{lookup('env','PWD')}}/templates/leaf_EVPN.j2"
-        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"   
+  #   - name: Register VXLAN variables
+  #     include_vars:
+  #       file: "{{lookup('env','PWD')}}/vars/VXLAN.yml"
+  #       name: VXLAN
 
-    # - name: Create VXLAN Configuration
+    # - name: Create Leaf EVPN Underlay config
     #   template: 
-    #     src: "{{lookup('env','PWD')}}/templates/VXLAN.j2"
-    #     dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_VXLAN.cfg"
+    #     src: "{{lookup('env','PWD')}}/templates/leaf_EVPN.j2"
+    #     dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"   
+
+
+  #   - name: Create VXLAN Configuration
+  #     template: 
+  #       src: "{{lookup('env','PWD')}}/templates/VXLAN.j2"
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_VXLAN.cfg"
 
 
 
@@ -81,18 +85,36 @@
 
 # hosts
 
-  # - name: Create leaf configurations for underlay and VXLAN tenants
-  #   hosts: leafs_DC1, leafs_DC2
+  # - name: Create leaf configurations for host ports
+  #   hosts: leaf[1:2:3:4]-DC1,leaf[1:2:3:4]-DC2
   #   tasks: 
   #   - name: Register variables (hosts_access)
   #     include_vars:
-  #       file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+  #       file: "{{lookup('env','PWD')}}/vars/hosts_access.yml"
   #       name: underlay
 
   #   - name: Create Leaf Host config for all leafs
   #     template: 
   #       src: "{{lookup('env','PWD')}}/templates/hosts_access.j2"
-  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_EVPN_underlay.cfg"   
+  #       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_hosts_access.cfg"    
+
+
+
+
+#generate DCI peering on borderleafs
+
+  - name: Create leaf configurations for host ports
+    hosts: borderleaf[1:2]-DC1,borderleaf[1:2]-DC2
+    tasks: 
+    - name: Register variables (underlay)
+      include_vars:
+        file: "{{lookup('env','PWD')}}/vars/underlay.yml"
+        name: underlay
+
+    - name: Create BL bgp config for DCI
+      template: 
+        src: "{{lookup('env','PWD')}}/templates/DCI.j2"
+        dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}/{{inventory_hostname}}_DCI.cfg"    
 
 
     

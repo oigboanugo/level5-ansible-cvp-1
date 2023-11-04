@@ -1,17 +1,19 @@
 service routing protocols model multi-agent
 
-{% if underlay['global'] == "DC1" %}
+{% if underlay[inventory_hostname]['DC'] == "DC1" %}
    ip prefix-list LOOPBACK
     seq 10 permit 192.168.101.0/24 eq 32
     seq 20 permit 192.168.102.0/24 eq 32
     seq 30 permit 192.168.103.0/24 eq 32
     seq 40 permit 192.168.255.0/24 eq 32
+    seq 50 permit 192.168.253.0/24 eq 32
    {% else %}
    ip prefix-list LOOPBACK
     seq 10 permit 192.168.201.0/24 eq 32
     seq 20 permit 192.168.202.0/24 eq 32
     seq 30 permit 192.168.203.0/24 eq 32
     seq 40 permit 192.168.255.0/24 eq 32
+    seq 50 permit 192.168.253.0/24 eq 32
 {% endif %}
 
 route-map LOOPBACK permit 10
@@ -27,7 +29,7 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
    distance bgp 20 200 200
 
 
-{% if underlay['global'] == "DC1" %}
+{% if underlay[inventory_hostname]['DC'] == "DC1" %}
    bgp listen range {{ underlay['global']['DC1']['p2p']}} peer-group LEAF_Underlay peer-filter LEAF-AS-RANGE
    {% else %}
    bgp listen range {{ underlay['global']['DC2']['p2p']}} peer-group LEAF_Underlay peer-filter LEAF-AS-RANGE
@@ -39,11 +41,13 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
   
 
    neighbor EVPN peer group
-{% if underlay['global'] == "DC1" %}
+{% if underlay[inventory_hostname]['DC'] == "DC1" %}
    bgp listen range {{ underlay['global']['DC1']['lo0']}} peer-group EVPN peer-filter LEAF-AS-RANGE
    {% else %}
    bgp listen range {{ underlay['global']['DC2']['lo0']}} peer-group EVPN peer-filter LEAF-AS-RANGE   
 {% endif %}
+
+   bgp listen range {{ underlay['global']['DCI']}} peer-group EVPN peer-filter LEAF-AS-RANGE
 
    neighbor EVPN ebgp-multihop 3
    neighbor EVPN send-community

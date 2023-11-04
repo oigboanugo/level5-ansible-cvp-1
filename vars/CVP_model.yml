@@ -3,54 +3,85 @@ path: "{{lookup('env','PWD')}}"
 CVP_CONFIGLETS_EVPN:
   MLAG-Left: "{{lookup('file','{{path}}/configs/Static/MLAG-Left.cfg')}}"
   MLAG-Right: "{{lookup('file','{{path}}/configs/Static/MLAG-Right.cfg')}}"
+
   spine1-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine1-DC1/spine1-DC1_EVPN_underlay.cfg')}}"
   spine1-DC1_interface: "{{lookup('file','{{path}}/configs/spine1-DC1/spine1-DC1_interface.cfg')}}"
+
   spine2-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine2-DC1/spine2-DC1_EVPN_underlay.cfg')}}"
   spine2-DC1_interface: "{{lookup('file','{{path}}/configs/spine2-DC1/spine2-DC1_interface.cfg')}}"
+
   spine3-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine3-DC1/spine3-DC1_EVPN_underlay.cfg')}}"
   spine3-DC1_interface: "{{lookup('file','{{path}}/configs/spine3-DC1/spine3-DC1_interface.cfg')}}"
+
   leaf1-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf1-DC1/leaf1-DC1_EVPN_underlay.cfg')}}"
   leaf1-DC1_interface: "{{lookup('file','{{path}}/configs/leaf1-DC1/leaf1-DC1_interface.cfg')}}"
   leaf1-DC1_VXLAN: "{{lookup('file','{{path}}/configs/leaf1-DC1/leaf1-DC1_VXLAN.cfg')}}"
+  leaf1-DC1_hosts_access: "{{lookup('file','{{path}}/configs/leaf1-DC1/leaf1-DC1_hosts_access.cfg')}}"
+
   leaf2-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf2-DC1/leaf2-DC1_EVPN_underlay.cfg')}}"
   leaf2-DC1_interface: "{{lookup('file','{{path}}/configs/leaf2-DC1/leaf2-DC1_interface.cfg')}}"
   leaf2-DC1_VXLAN: "{{lookup('file','{{path}}/configs/leaf2-DC1/leaf2-DC1_VXLAN.cfg')}}"
+  leaf2-DC1_hosts_access: "{{lookup('file','{{path}}/configs/leaf2-DC1/leaf2-DC1_hosts_access.cfg')}}"
+
   leaf3-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf3-DC1/leaf3-DC1_EVPN_underlay.cfg')}}"
   leaf3-DC1_interface: "{{lookup('file','{{path}}/configs/leaf3-DC1/leaf3-DC1_interface.cfg')}}"
   leaf3-DC1_VXLAN: "{{lookup('file','{{path}}/configs/leaf3-DC1/leaf3-DC1_VXLAN.cfg')}}"
+  leaf3-DC1_hosts_access: "{{lookup('file','{{path}}/configs/leaf3-DC1/leaf3-DC1_hosts_access.cfg')}}"
+
   leaf4-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf4-DC1/leaf4-DC1_EVPN_underlay.cfg')}}"
   leaf4-DC1_interface: "{{lookup('file','{{path}}/configs/leaf4-DC1/leaf4-DC1_interface.cfg')}}"
   leaf4-DC1_VXLAN: "{{lookup('file','{{path}}/configs/leaf4-DC1/leaf4-DC1_VXLAN.cfg')}}"
+  leaf4-DC1_hosts_access: "{{lookup('file','{{path}}/configs/leaf4-DC1/leaf4-DC1_hosts_access.cfg')}}"
+
   borderleaf1-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/borderleaf1-DC1/borderleaf1-DC1_EVPN_underlay.cfg')}}"
   borderleaf1-DC1_interface: "{{lookup('file','{{path}}/configs/borderleaf1-DC1/borderleaf1-DC1_interface.cfg')}}"
   borderleaf1-DC1_VXLAN: "{{lookup('file','{{path}}/configs/borderleaf1-DC1/borderleaf1-DC1_VXLAN.cfg')}}"
+
+  borderleaf1-DC1_DCI: "{{lookup('file','{{path}}/configs/borderleaf1-DC1/borderleaf1-DC1_DCI.cfg')}}"
   borderleaf2-DC1_EVPN_underlay: "{{lookup('file','{{path}}/configs/borderleaf2-DC1/borderleaf2-DC1_EVPN_underlay.cfg')}}"
   borderleaf2-DC1_interface: "{{lookup('file','{{path}}/configs/borderleaf2-DC1/borderleaf2-DC1_interface.cfg')}}"
   borderleaf2-DC1_VXLAN: "{{lookup('file','{{path}}/configs/borderleaf2-DC1/borderleaf2-DC1_VXLAN.cfg')}}"
+
+  borderleaf2-DC1_DCI: "{{lookup('file','{{path}}/configs/borderleaf2-DC1/borderleaf2-DC1_DCI.cfg')}}"
   spine1-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine1-DC2/spine1-DC2_EVPN_underlay.cfg')}}"
   spine1-DC2_interface: "{{lookup('file','{{path}}/configs/spine1-DC2/spine1-DC2_interface.cfg')}}"
+
   spine2-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine2-DC2/spine2-DC2_EVPN_underlay.cfg')}}"
   spine2-DC2_interface: "{{lookup('file','{{path}}/configs/spine2-DC2/spine2-DC2_interface.cfg')}}"
+
   spine3-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/spine3-DC2/spine3-DC2_EVPN_underlay.cfg')}}"
   spine3-DC2_interface: "{{lookup('file','{{path}}/configs/spine3-DC2/spine3-DC2_interface.cfg')}}"
+
   leaf1-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf1-DC2/leaf1-DC2_EVPN_underlay.cfg')}}"
   leaf1-DC2_interface: "{{lookup('file','{{path}}/configs/leaf1-DC2/leaf1-DC2_interface.cfg')}}"
   leaf1-DC2_VXLAN: "{{lookup('file','{{path}}/configs/leaf1-DC2/leaf1-DC2_VXLAN.cfg')}}"
+  leaf1-DC2_hosts_access: "{{lookup('file','{{path}}/configs/leaf1-DC2/leaf1-DC2_hosts_access.cfg')}}"
+
   leaf2-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf2-DC2/leaf2-DC2_EVPN_underlay.cfg')}}"
   leaf2-DC2_interface: "{{lookup('file','{{path}}/configs/leaf2-DC2/leaf2-DC2_interface.cfg')}}"
   leaf2-DC2_VXLAN: "{{lookup('file','{{path}}/configs/leaf2-DC2/leaf2-DC2_VXLAN.cfg')}}"
+  leaf2-DC2_hosts_access: "{{lookup('file','{{path}}/configs/leaf2-DC2/leaf2-DC2_hosts_access.cfg')}}"
+
   leaf3-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf3-DC2/leaf3-DC2_EVPN_underlay.cfg')}}"
   leaf3-DC2_interface: "{{lookup('file','{{path}}/configs/leaf3-DC2/leaf3-DC2_interface.cfg')}}"
   leaf3-DC2_VXLAN: "{{lookup('file','{{path}}/configs/leaf3-DC2/leaf3-DC2_VXLAN.cfg')}}"
+  leaf3-DC2_hosts_access: "{{lookup('file','{{path}}/configs/leaf3-DC2/leaf3-DC2_hosts_access.cfg')}}"
+
   leaf4-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/leaf4-DC2/leaf4-DC2_EVPN_underlay.cfg')}}"
   leaf4-DC2_interface: "{{lookup('file','{{path}}/configs/leaf4-DC2/leaf4-DC2_interface.cfg')}}"
   leaf4-DC2_VXLAN: "{{lookup('file','{{path}}/configs/leaf4-DC2/leaf4-DC2_VXLAN.cfg')}}"
+  leaf4-DC2_hosts_access: "{{lookup('file','{{path}}/configs/leaf4-DC2/leaf4-DC2_hosts_access.cfg')}}"
+
   borderleaf1-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/borderleaf1-DC2/borderleaf1-DC2_EVPN_underlay.cfg')}}"
   borderleaf1-DC2_interface: "{{lookup('file','{{path}}/configs/borderleaf1-DC2/borderleaf1-DC2_interface.cfg')}}"
   borderleaf1-DC2_VXLAN: "{{lookup('file','{{path}}/configs/borderleaf1-DC2/borderleaf1-DC2_VXLAN.cfg')}}"
+
+  borderleaf1-DC2_DCI: "{{lookup('file','{{path}}/configs/borderleaf1-DC2/borderleaf1-DC2_DCI.cfg')}}"
   borderleaf2-DC2_EVPN_underlay: "{{lookup('file','{{path}}/configs/borderleaf2-DC2/borderleaf2-DC2_EVPN_underlay.cfg')}}"
   borderleaf2-DC2_interface: "{{lookup('file','{{path}}/configs/borderleaf2-DC2/borderleaf2-DC2_interface.cfg')}}"
   borderleaf2-DC2_VXLAN: "{{lookup('file','{{path}}/configs/borderleaf2-DC2/borderleaf2-DC2_VXLAN.cfg')}}"
+
+  borderleaf2-DC2_DCI: "{{lookup('file','{{path}}/configs/borderleaf2-DC2/borderleaf2-DC2_DCI.cfg')}}"
 
   
 
@@ -63,6 +94,7 @@ CVP_DEVICES_EVPN:
       - 'spine1-DC1-BASE'
       - 'spine1-DC1_EVPN_underlay'
       - 'spine1-DC1_interface'
+
   - fqdn: 'spine2-DC1'
     parentContainerName: 'Spine-DC1'
     configlets:
@@ -70,6 +102,7 @@ CVP_DEVICES_EVPN:
       - 'spine2-DC1-BASE'
       - 'spine2-DC1_EVPN_underlay'
       - 'spine2-DC1_interface'
+
   - fqdn: 'spine3-DC1'
     parentContainerName: 'Spine-DC1'
     configlets:
@@ -77,6 +110,7 @@ CVP_DEVICES_EVPN:
       - 'spine3-DC1-BASE'
       - 'spine3-DC1_EVPN_underlay'
       - 'spine3-DC1_interface'
+
   - fqdn: 'leaf1-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -85,7 +119,12 @@ CVP_DEVICES_EVPN:
       - 'leaf1-DC1_EVPN_underlay'
       - 'leaf1-DC1_interface'
       - 'leaf1-DC1_VXLAN'
+      - 'leaf1-DC1_hosts_access'
+      - 'leaf1-DC1_hosts_access'
+      - 'leaf1-DC1_hosts_access'
       - 'MLAG-Left'
+
+
   - fqdn: 'leaf2-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -94,7 +133,11 @@ CVP_DEVICES_EVPN:
       - 'leaf2-DC1_EVPN_underlay'
       - 'leaf2-DC1_interface'
       - 'leaf2-DC1_VXLAN'
+      - 'leaf2-DC1_hosts_access'
+      - 'leaf2-DC1_hosts_access'
+      - 'leaf2-DC1_hosts_access'
       - 'MLAG-Right'
+
   - fqdn: 'leaf3-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -103,7 +146,11 @@ CVP_DEVICES_EVPN:
       - 'leaf3-DC1_EVPN_underlay'
       - 'leaf3-DC1_interface'
       - 'leaf3-DC1_VXLAN'
+      - 'leaf3-DC1_hosts_access'
+      - 'leaf3-DC1_hosts_access'
+      - 'leaf3-DC1_hosts_access'
       - 'MLAG-Right'
+
   - fqdn: 'leaf4-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -112,7 +159,12 @@ CVP_DEVICES_EVPN:
       - 'leaf4-DC1_EVPN_underlay'
       - 'leaf4-DC1_interface'
       - 'leaf4-DC1_VXLAN'
+      - 'leaf4-DC1_hosts_access'
+      - 'leaf4-DC1_hosts_access'
+      - 'leaf4-DC1_hosts_access'
       - 'MLAG-Left'
+
+
   - fqdn: 'borderleaf1-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -122,6 +174,9 @@ CVP_DEVICES_EVPN:
       - 'borderleaf1-DC1_interface'
       - 'borderleaf1-DC1_VXLAN'
       - 'MLAG-Left'
+
+
+      - 'borderleaf1-DC1_DCI'
   - fqdn: 'borderleaf2-DC1'
     parentContainerName: 'Leaf-DC1'
     configlets:
@@ -131,6 +186,8 @@ CVP_DEVICES_EVPN:
       - 'borderleaf2-DC1_interface'
       - 'borderleaf2-DC1_VXLAN'
       - 'MLAG-Right'
+
+      - 'borderleaf2-DC1_DCI'
   - fqdn: 'spine1-DC2'
     parentContainerName: 'Spine-DC2'
     configlets:
@@ -138,6 +195,7 @@ CVP_DEVICES_EVPN:
       - 'spine1-DC2-BASE'
       - 'spine1-DC2_EVPN_underlay'
       - 'spine1-DC2_interface'
+
   - fqdn: 'spine2-DC2'
     parentContainerName: 'Spine-DC2'
     configlets:
@@ -145,6 +203,7 @@ CVP_DEVICES_EVPN:
       - 'spine2-DC2-BASE'
       - 'spine2-DC2_EVPN_underlay'
       - 'spine2-DC2_interface'
+
   - fqdn: 'spine3-DC2'
     parentContainerName: 'Spine-DC2'
     configlets:
@@ -152,6 +211,7 @@ CVP_DEVICES_EVPN:
       - 'spine3-DC2-BASE'
       - 'spine3-DC2_EVPN_underlay'
       - 'spine3-DC2_interface'
+
   - fqdn: 'leaf1-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -160,7 +220,12 @@ CVP_DEVICES_EVPN:
       - 'leaf1-DC2_EVPN_underlay'
       - 'leaf1-DC2_interface'
       - 'leaf1-DC2_VXLAN'
+      - 'leaf1-DC2_hosts_access'
+      - 'leaf1-DC2_hosts_access'
+      - 'leaf1-DC2_hosts_access'
       - 'MLAG-Left'
+
+
   - fqdn: 'leaf2-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -169,7 +234,11 @@ CVP_DEVICES_EVPN:
       - 'leaf2-DC2_EVPN_underlay'
       - 'leaf2-DC2_interface'
       - 'leaf2-DC2_VXLAN'
+      - 'leaf2-DC2_hosts_access'
+      - 'leaf2-DC2_hosts_access'
+      - 'leaf2-DC2_hosts_access'
       - 'MLAG-Right'
+
   - fqdn: 'leaf3-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -178,7 +247,12 @@ CVP_DEVICES_EVPN:
       - 'leaf3-DC2_EVPN_underlay'
       - 'leaf3-DC2_interface'
       - 'leaf3-DC2_VXLAN'
+      - 'leaf3-DC2_hosts_access'
+      - 'leaf3-DC2_hosts_access'
+      - 'leaf3-DC2_hosts_access'
       - 'MLAG-Left'
+
+
   - fqdn: 'leaf4-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -187,7 +261,11 @@ CVP_DEVICES_EVPN:
       - 'leaf4-DC2_EVPN_underlay'
       - 'leaf4-DC2_interface'
       - 'leaf4-DC2_VXLAN'
+      - 'leaf4-DC2_hosts_access'
+      - 'leaf4-DC2_hosts_access'
+      - 'leaf4-DC2_hosts_access'
       - 'MLAG-Right'
+
   - fqdn: 'borderleaf1-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -197,6 +275,9 @@ CVP_DEVICES_EVPN:
       - 'borderleaf1-DC2_interface'
       - 'borderleaf1-DC2_VXLAN'
       - 'MLAG-Left'
+
+
+      - 'borderleaf1-DC2_DCI'
   - fqdn: 'borderleaf2-DC2'
     parentContainerName: 'Leaf-DC2'
     configlets:
@@ -206,3 +287,5 @@ CVP_DEVICES_EVPN:
       - 'borderleaf2-DC2_interface'
       - 'borderleaf2-DC2_VXLAN'
       - 'MLAG-Right'
+
+      - 'borderleaf2-DC2_DCI'
